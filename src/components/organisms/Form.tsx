@@ -36,33 +36,6 @@ const ErrorMessage = styled.span`
   color: red;
 `;
 
-const PopupOverlay = styled.div`
-  display: flex;
-  justify-content: center;
-  overflow: auto;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  opacity: 0;
-  transition: opacity 0.5s, transform 0s 0.5s;
-  transform: scale(0);
-`;
-
-const PopupContent = styled.div`
-  position: relative;
-  align-self: center;
-  width: 90%;
-  padding: 30px 30px 15px;
-  box-sizing: border-box;
-  background: #fff;
-  line-height: 1.4em;
-  transition: 0.5s;
-`;
-
 // -------------------------------------------------------------------- //
 
 type Inputs = {
@@ -87,18 +60,12 @@ export const Form = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  //   const { data, error } = useSWR<any>("csr", () =>
-  //     fetch("https://myapi.dev/csr").then((res) => res.json())
-  //   );
-  //   if (error) return <>error!</>;
-  //   if (!data) return <>...loading</>;
 
   const onSubmit = () => {
     axios
       .post("https://myapi.dev/csr/post", {})
       .then((response) => {
         // console.log("post response::", response);
-        // ここでresponse受け取ってそれを用いてポップアップに出す。（ex: ”FirstNameとLastName”を送信しました。 みたいなね）
         if (response.data.data) {
           setIsOpen(true);
         }
@@ -136,7 +103,6 @@ export const Form = () => {
             contentStyle={contentStyle}
             overlayStyle={overlayStyle}
             open={isOpen}
-            // trigger={<button className={styles.button}> Open Modal </button>}
             modal
             nested
           >
@@ -164,15 +130,6 @@ export const Form = () => {
                   >
                     この時POST処理
                   </Popup>
-                  {/* <button
-                    className={styles.button}
-                    onClick={() => {
-                      console.log("modal closed ");
-                      close();
-                    }}
-                  >
-                    close modal
-                  </button> */}
                 </div>
               </div>
             )}
