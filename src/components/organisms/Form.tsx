@@ -126,10 +126,29 @@ export const Form = () => {
                       </button>
                     }
                     position="top center"
+                    modal
                     nested
                   >
                     この時POST処理
                   </Popup>
+                </div>
+              </div>
+            )}
+          </Popup>
+          {/* sample */}
+          <Popup
+            contentStyle={contentStyle}
+            overlayStyle={overlayStyle}
+            trigger={<button className="button"> モーダルを開く </button>}
+            modal
+          >
+            {(close) => (
+              <div className={styles.modal}>
+                <button className={styles.close} onClick={close}>
+                  &times;
+                </button>
+                <div className={styles.content}>
+                  <p>モーダルコンテンツ</p>
                 </div>
               </div>
             )}

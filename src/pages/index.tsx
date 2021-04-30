@@ -1,7 +1,6 @@
 import type { GetServerSideProps } from "next";
 import React from "react";
 import type { Source } from "../../types";
-import { Card } from "../components/organisms/Card";
 import { Form } from "../components/organisms/Form";
 
 type Props = {
@@ -11,9 +10,6 @@ type Props = {
 const Home = (props: Props) => {
   return (
     <div>
-      <h1>{props.data.title}</h1>
-      <p>{props.data.text}</p>
-      <Card />
       <Form />
     </div>
   );
